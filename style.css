@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: bold 12px Arial, Helvetica, sans-serif;
+    background-color: black;
+  }
+  .clock {
+    border: 1px solid #606060;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #222222;
+  }
+  #Date {
+    font-size: 20px !important;
+    text-align: center;
+  }
+  
+  .clock ul {
+    list-style: none;
+    display: flex;
+    font-size: 90px;
+    gap: 15px;
+  }
+  
+  #toggleButton {
+      margin-left: 200px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    
+    /* Day mode styling */
+    body.day-mode {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    
+    body.day-mode .clock {
+      background-color: #ffffff;
+      color: #333;
+      border: 1px solid #cccccc;
+    }
+  
