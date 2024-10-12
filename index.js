@@ -1,58 +1,35 @@
-function clock() {
-  var monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+function updateClock() {
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
-  var dayNames = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+  const dayNames = [
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
   ];
 
-  var today = new Date();
+  const now = new Date();
 
-  $("#Date").html(
-    dayNames[today.getDay()] +
-      " " +
-      today.getDate() +
-      " " +
-      monthNames[today.getMonth()] +
-      " " +
-      today.getFullYear()
-  );
+  // Format Date
+  $("#Date").text(`${dayNames[now.getDay()]} ${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`);
 
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  var day = h < 12 ? "AM" : "PM";
+  // Format Time
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const period = hours < 12 ? "AM" : "PM";
+  hours = String(hours % 12 || 12).padStart(2, '0'); // Convert to 12-hour format
 
-  h = h < 10 ? "0" + h : h;
-  m = m < 10 ? "0" + m : m;
-  s = s < 10 ? "0" + s : s;
-
-  $("#hours").html(h);
-  $("#min").html(m);
-  $("#sec").html(s);
+  $("#hours").text(hours);
+  $("#min").text(minutes);
+  $("#sec").text(seconds);
 }
 
-$("#toggleButton").on("click", function () {
+$("#toggleButton").on("click", () => {
   $("body").toggleClass("day-mode night-mode");
 });
 
+// Set initial mode to night-mode
 $("body").addClass("night-mode");
 
-var inter = setInterval(clock, 400);
+// Update clock every second
+setInterval(updateClock, 1000);
